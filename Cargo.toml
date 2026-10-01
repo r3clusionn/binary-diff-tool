@@ -1,0 +1,19 @@
+[package]
+name = "bindiff"
+version = "0.1.0"
+edition = "2021"
+description = "Compare very large binary files in parallel and report the differing byte ranges."
+license = "MIT"
+
+[dependencies]
+blake3 = { version = "1", features = ["mmap", "rayon"] }
+clap = { version = "4", features = ["derive"] }
+memmap2 = "0.9"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
