@@ -4,6 +4,8 @@
 
 **Status:** v0.1.0, working. Benchmarked on 4 GiB files against GNU `cmp`.
 
+![bindiff comparing two 64 MiB images and listing five differing ranges with the bytes from each file, at 5.94 GB/s](docs/images/diff.png)
+
 ## Features
 
 - Parallel comparison: the file is cut into chunks, worker threads compare them 4 KiB at a time with `memcmp` and only scan byte by byte inside blocks that differ.

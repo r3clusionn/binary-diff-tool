@@ -117,8 +117,9 @@ fn run(cli: Cli) -> Result<bool, String> {
             println!("sizes differ: {} has {} extra bytes from offset {:#x}", longer.display(), t.len, t.offset);
         }
         let pct = if rep.common() > 0 { rep.differing_bytes as f64 * 100.0 / rep.common() as f64 } else { 0.0 };
+        let share = if pct > 0.0 && pct < 0.0001 { "<0.0001%".to_string() } else { format!("{pct:.4}%") };
         println!(
-            "{} differing bytes in {} ranges within the first {} ({pct:.4}%)",
+            "{} differing bytes in {} ranges within the first {} ({share})",
             rep.differing_bytes,
             rep.ranges.len(),
             human(rep.common())
