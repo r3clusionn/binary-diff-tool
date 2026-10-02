@@ -157,7 +157,7 @@ fn cli_exit_codes_and_output() {
     let diff = Command::new(bin).arg(&pa).arg(&pb).output().unwrap();
     assert_eq!(diff.status.code(), Some(1));
     let text = String::from_utf8_lossy(&diff.stdout);
-    assert!(text.contains("1 differing bytes in 1 ranges"), "{text}");
+    assert!(text.contains("1 differing byte in 1 range"), "{text}");
     assert!(text.contains("0x0000003039"), "{text}"); // 12345
 
     let quiet = Command::new(bin).arg("-q").arg(&pa).arg(&pb).output().unwrap();
